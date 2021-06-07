@@ -1,5 +1,7 @@
 package com.chinadaas.entity;
 
+import java.util.List;
+
 /*******************************************************************************
  * - Copyright (c)  2021  chinadaas.com
  * - File Name: User
@@ -17,6 +19,24 @@ public class User {
     private int id;
     private String username;
     private String password;
+    private List<Order> orderList;
+    private List<Role> roleList;
+
+    public List<Role> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
+    }
+
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
+    }
 
     public int getId() {
         return id;
@@ -48,6 +68,8 @@ public class User {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", orderList=" + orderList +
+                ", roleList=" + roleList +
                 '}';
     }
 }

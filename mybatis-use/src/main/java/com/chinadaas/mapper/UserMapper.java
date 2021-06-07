@@ -18,7 +18,11 @@ import java.util.List;
  *******************************************************************************/
 public interface UserMapper {
 
+    // 一对多查询
     List<User> findAll();
+
+    // 多对多查询，查询user关联role
+    List<User> findAllUserRelRole();
 
     int add();
 

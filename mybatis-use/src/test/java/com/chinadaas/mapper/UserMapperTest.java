@@ -116,4 +116,14 @@ public class UserMapperTest {
 
         System.out.println(user);
     }
+
+    @Test
+    public void findAllUserRelRoleTest() {
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+
+        List<User> relRoles = mapper.findAllUserRelRole();
+        for (User user : relRoles) {
+            System.out.println(user);
+        }
+    }
 }

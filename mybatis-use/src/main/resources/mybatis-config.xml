@@ -8,6 +8,8 @@
 
     <typeAliases>
         <typeAlias type="com.chinadaas.entity.User" alias="user"></typeAlias>
+        <typeAlias type="com.chinadaas.entity.Order" alias="order"></typeAlias>
+        <typeAlias type="com.chinadaas.entity.Role" alias="role"></typeAlias>
     </typeAliases>
 
     <environments default="dev">
@@ -24,6 +26,7 @@
 
     <mappers>
         <mapper resource="com/chinadaas/mapper/UserMapper.xml"/>
+        <mapper resource="com/chinadaas/mapper/OrderMapper.xml"/>
     </mappers>
 
 </configuration>

@@ -11,8 +11,34 @@
         <include refid="selectUser"></include> where id = #{id}
     </select>
 
-    <select id="findAll" resultType="com.chinadaas.entity.User">
-        select * from user;
+
+    <resultMap id="relOrders" type="user">
+        <id column="uid" property="id"></id>
+        <result column="username" property="username"></result>
+        <result column="password" property="password"></result>
+        <collection property="orderList" ofType="order">
+            <id column="id" property="id"></id>
+            <result column="total" property="total"></result>
+        </collection>
+    </resultMap>
+    <select id="findAll" resultMap="relOrders">
+        select * from user left join orders on user.id = orders.uid;
+    </select>
+
+
+    <resultMap id="relRoles" type="user">
+        <id column="userid" property="id"></id>
+        <result column="username" property="username"></result>
+        <result column="password" property="password"></result>
+        <collection property="roleList" ofType="role">
+            <id column="roleid" property="id"></id>
+            <result column="rolename" property="rolename"></result>
+        </collection>
+    </resultMap>
+    <select id="findAllUserRelRole" resultMap="relRoles">
+        select * from user
+        left join sys_user_role as sur on user.id = sur.userid
+        left join sys_role on sur.roleid = sys_role.id
     </select>
 
     <insert id="add" parameterType="com.chinadaas.entity.User" useGeneratedKeys="true" keyProperty="id">
