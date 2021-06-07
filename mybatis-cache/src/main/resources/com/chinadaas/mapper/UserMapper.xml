@@ -11,11 +11,11 @@
     <sql id="selectUser">
         select * from user
     </sql>
-    <select id="findById" parameterType="int" resultType="user">
+    <select id="findById" parameterType="int" resultType="user" useCache="true">
         <include refid="selectUser"></include> where id = #{id}
     </select>
 
-    <update id="update" parameterType="user">
+    <update id="update" parameterType="user" flushCache="true">
       update user set username = #{username}, password = #{password} where id = #{id}
     </update>
 
