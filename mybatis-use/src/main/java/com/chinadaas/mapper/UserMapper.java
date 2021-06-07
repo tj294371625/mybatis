@@ -4,7 +4,7 @@ import com.chinadaas.entity.User;
 
 /*******************************************************************************
  * - Copyright (c)  2021  chinadaas.com
- * - File Name: UserDAO
+ * - File Name: UserMapper
  * - @author: liubc - Initial implementation
  * - Description:
  *
@@ -14,7 +14,7 @@ import com.chinadaas.entity.User;
  * Date         Author          Modification
  * 2021/6/6      liubc           Create the current class
  *******************************************************************************/
-public interface UserDAO {
+public interface UserMapper {
 
     User findAll();
 }

@@ -2,8 +2,21 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.chinadaas.mapper.UserDAO">
+<mapper namespace="com.chinadaas.mapper.UserMapper">
+
     <select id="findAll" resultType="com.chinadaas.entity.User">
         select * from user;
     </select>
+
+    <insert id="add" parameterType="com.chinadaas.entity.User" useGeneratedKeys="true" keyProperty="id">
+        insert into user (username,password,birthday) values(#{username}, #{password}, curdate())
+    </insert>
+
+    <update id="update" parameterType="com.chinadaas.entity.User">
+        update user set username = #{username}, password = #{password} where id = #{id}
+    </update>
+    
+    <delete id="delete" parameterType="int">
+        delete from user where id = #{aa}
+    </delete>
 </mapper>
