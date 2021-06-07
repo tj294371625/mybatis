@@ -67,5 +67,44 @@ public class UserMapperTest {
         System.out.println(user == user0);
     }
 
+    @Test
+    public void test1() throws IOException {
+        InputStream inputStream = Resources.getResourceAsStream("mybatis-config.xml");
 
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        SqlSession sqlSession1 = sqlSessionFactory.openSession(true);
+        SqlSession sqlSession2 = sqlSessionFactory.openSession(true);
+
+        UserMapper mapper1 = sqlSession1.getMapper(UserMapper.class);
+        UserMapper mapper2 = sqlSession2.getMapper(UserMapper.class);
+
+        User user1 = mapper1.findById(1);
+        User user2 = mapper2.findById(1);
+
+        // zs: 开启二级缓存之后，仅仅执行sql一次，但这里的结果为false，因为二级缓存缓存的是数据而不是对象（防止共享被篡改）
+        System.out.println(user1 == user2);
+    }
+
+    @Test
+    public void test2() throws IOException {
+        InputStream inputStream = Resources.getResourceAsStream("mybatis-config.xml");
+
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        SqlSession sqlSession1 = sqlSessionFactory.openSession(true);
+        SqlSession sqlSession2 = sqlSessionFactory.openSession(true);
+
+        UserMapper mapper1 = sqlSession1.getMapper(UserMapper.class);
+        UserMapper mapper2 = sqlSession2.getMapper(UserMapper.class);
+
+        User user1 = mapper1.findById(1);
+        User condition = new User();
+        condition.setId(1);
+        condition.setUsername("lucy");
+        condition.setPassword("123");
+        mapper1.update(condition);
+
+        User user2 = mapper2.findById(1);
+
+        System.out.println(user1 == user2);
+    }
 }

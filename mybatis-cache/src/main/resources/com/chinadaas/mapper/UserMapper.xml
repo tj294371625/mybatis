@@ -4,6 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chinadaas.mapper.UserMapper">
 
+    <!--二级缓存基于mapper.xml文件的namespace-->
+    <!-- type属性默认指定PerpetualCache类作为二级缓存 -->
+    <cache></cache>
+
     <sql id="selectUser">
         select * from user
     </sql>
