@@ -32,7 +32,7 @@ public class UserDAOTest {
 
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        List<User> users = sqlSession.selectList("UserMapper.findAll");
+        List<User> users = sqlSession.selectList("com.chinadaas.mapper.UserDAO.findAll");
 
         for (User user : users) {
             System.out.println(user);
