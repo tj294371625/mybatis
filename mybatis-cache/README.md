@@ -1,0 +1,2 @@
+省略了Mybatis与redis的整合。因为Mybatis的二级缓存有着致命的缺陷。
+详情请参看Xmind中 缓存 这一分支
