@@ -2,6 +2,8 @@ package com.chinadaas.mapper;
 
 import com.chinadaas.entity.User;
 
+import java.util.List;
+
 /*******************************************************************************
  * - Copyright (c)  2021  chinadaas.com
  * - File Name: UserMapper
@@ -16,5 +18,17 @@ import com.chinadaas.entity.User;
  *******************************************************************************/
 public interface UserMapper {
 
-    User findAll();
+    List<User> findAll();
+
+    int add();
+
+    int update();
+
+    int delete();
+
+    User findByCondition(User condition);
+
+    List<User> findByIds(List<Integer> ids);
+
+    User findById(int id);
 }

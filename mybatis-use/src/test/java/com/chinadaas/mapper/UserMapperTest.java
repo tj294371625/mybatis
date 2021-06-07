@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 /*******************************************************************************
@@ -71,4 +72,48 @@ public class UserMapperTest {
         sqlSession.delete("com.chinadaas.mapper.UserMapper.delete", 3);
     }
 
+    @Test
+    public void proxyTest() {
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+
+        List<User> allUsers = mapper.findAll();
+        for (User user : allUsers) {
+            System.out.println(user);
+        }
+    }
+
+    @Test
+    public void findByConditionTest() {
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+
+        User condition = new User();
+        condition.setId(2);
+        condition.setUsername("tom");
+        User user = mapper.findByCondition(condition);
+
+        System.out.println(user);
+    }
+
+    @Test
+    public void findByIdsTest() {
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+
+        List<Integer> ids = new ArrayList<>();
+        ids.add(1);
+        ids.add(2);
+        List<User> users = mapper.findByIds(ids);
+
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
+
+    @Test
+    public void findById() {
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+
+        User user = mapper.findById(1);
+
+        System.out.println(user);
+    }
 }

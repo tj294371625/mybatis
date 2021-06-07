@@ -4,6 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chinadaas.mapper.UserMapper">
 
+    <sql id="selectUser">
+        select * from user
+    </sql>
+    <select id="findById" parameterType="int" resultType="user">
+        <include refid="selectUser"></include> where id = #{id}
+    </select>
+
     <select id="findAll" resultType="com.chinadaas.entity.User">
         select * from user;
     </select>
@@ -15,8 +22,28 @@
     <update id="update" parameterType="com.chinadaas.entity.User">
         update user set username = #{username}, password = #{password} where id = #{id}
     </update>
-    
+
     <delete id="delete" parameterType="int">
         delete from user where id = #{aa}
     </delete>
+
+    <select id="findByCondition" parameterType="UsEr" resultType="user">
+        select * from user
+        <where>
+            <if test="id != 0">
+                and id = #{id}
+            </if>
+            <if test="username != null">
+                and username = #{username}
+            </if>
+        </where>
+    </select>
+
+    <select id="findByIds" parameterType="int" resultType="user">
+        select * from user where id in
+        <foreach collection="list" index="index" item="aa" open="(" separator="," close=")">
+            #{aa}
+        </foreach>
+    </select>
+
 </mapper>
