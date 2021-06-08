@@ -15,4 +15,8 @@
       update user set username = #{username}, password = #{password} where id = #{id}
     </update>
 
+    <select id="findAll" resultType="user">
+      select * from user
+    </select>
+
 </mapper>
